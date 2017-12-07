@@ -11,7 +11,8 @@ lazy val root = project.in(file("."))
 lazy val euclid = crossProject.in(file("."))
   .settings(
     name := "euclid",
-    version := "0.0.1-SNAPSHOT"
+    version := "0.0.1-SNAPSHOT",
+    libraryDependencies += "org.scalatest" %%% "scalatest" % "3.0.4" % "test"
   )
   .jvmSettings()
   .jsSettings(

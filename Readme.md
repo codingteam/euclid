@@ -15,5 +15,14 @@ $ sbt 'project euclidJVM' run
 $ sbt 'project euclidJS' run
 ```
 
+Test
+----
+
+To execute automatic tests, run the following command:
+
+```console
+$ sbt test
+```
+
 [rot-js]: http://ondras.github.io/rot.js/hp/
 [sbt]: http://www.scala-sbt.org/
