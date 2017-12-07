@@ -1,6 +1,22 @@
-enablePlugins(ScalaJSPlugin)
+name := "Euclid root"
+scalaVersion in ThisBuild := "2.12.3"
 
-name := "Euclid"
-scalaVersion := "2.12.3"
+lazy val root = project.in(file("."))
+  .aggregate(euclidJS, euclidJVM)
+  .settings(
+    publish := {},
+    publishLocal := {}
+  )
 
-scalaJSUseMainModuleInitializer := true
+lazy val euclid = crossProject.in(file("."))
+  .settings(
+    name := "euclid",
+    version := "0.0.1-SNAPSHOT"
+  )
+  .jvmSettings()
+  .jsSettings(
+    scalaJSUseMainModuleInitializer := true
+  )
+
+lazy val euclidJVM = euclid.jvm
+lazy val euclidJS = euclid.js

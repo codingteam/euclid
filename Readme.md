@@ -11,7 +11,8 @@ To run the project (just a stub for now), install [SBT][sbt] and then execute
 the following command in your terminal:
 
 ```console
-$ sbt run
+$ sbt 'project euclidJVM' run
+$ sbt 'project euclidJS' run
 ```
 
 [rot-js]: http://ondras.github.io/rot.js/hp/

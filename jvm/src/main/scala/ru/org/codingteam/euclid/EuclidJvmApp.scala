@@ -1,7 +1,7 @@
 package ru.org.codingteam.euclid
 
-object EuclidApp {
+object EuclidJvmApp {
   def main(args: Array[String]): Unit = {
-    println("Hello world!")
+    Euclid.hello(args)
   }
 }
