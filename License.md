@@ -1,6 +1,7 @@
 The MIT License (MIT)
 =====================
 
+Copyright (C) 2014–2016 by Keter authors
 Copyright (C) 2017 by Euclid authors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
