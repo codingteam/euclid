@@ -5,14 +5,7 @@ import ru.org.codingteam.euclid.io.Display
 import ru.org.codingteam.euclid.util.Logging
 import ru.org.codingteam.euclid.viewmodels.MenuViewModel
 
-class MenuView[KeyCode](viewModel: MenuViewModel) extends SimpleKeyMapView[KeyCode] with Logging {
-
-  val keyMap = Map(
-    // TODO[F]: Define these at the platform level.
-    //ROT.VK_UP -> viewModel.up _,
-    //ROT.VK_DOWN -> viewModel.down _,
-    //ROT.VK_RETURN -> viewModel.execute _
-  )
+abstract class MenuView[KeyCode](val viewModel: MenuViewModel) extends SimpleKeyMapView[KeyCode] with Logging {
 
   override def render(display: Display): Unit = {
     display.drawTextCentered("Keter", Some(1))
@@ -29,5 +22,4 @@ class MenuView[KeyCode](viewModel: MenuViewModel) extends SimpleKeyMapView[KeyCo
       display.drawText(indent, base + index, text)
     }
   }
-
 }

@@ -42,16 +42,4 @@ class ListView[KeyCode, T](shape: Rectangle,
 object ListView {
 
   type KeyMap[KeyCode] = Map[KeyCode, () => Unit]
-
-  def bracketKeyMap[KeyCode, T](model: ItemsViewModel[T]): KeyMap[KeyCode] = Map(
-    // TODO[F]: Define these at the platform level.
-    // ROT.VK_OPEN_BRACKET -> model.up _,
-    // ROT.VK_CLOSE_BRACKET -> model.down _
-  )
-
-  def arrowKeyMap[KeyCode, T](model: ItemsViewModel[T]): KeyMap[KeyCode] = Map(
-    // TODO[F]: Define these at the platform level.
-    // ROT.VK_UP -> model.up _,
-    // ROT.VK_DOWN -> model.down _
-  )
 }
