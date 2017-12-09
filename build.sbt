@@ -16,8 +16,10 @@ lazy val euclid = crossProject.in(file("."))
   )
   .jvmSettings()
   .jsSettings(
+    libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "0.9.3",
+    npmDependencies in Compile += "rot-js" -> "0.6.2",
     scalaJSUseMainModuleInitializer := true
   )
 
 lazy val euclidJVM = euclid.jvm
-lazy val euclidJS = euclid.js
+lazy val euclidJS = euclid.js.enablePlugins(ScalaJSBundlerPlugin)

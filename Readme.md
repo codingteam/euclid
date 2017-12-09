@@ -27,12 +27,21 @@ Run
 ---
 
 To run the manual test projects (just stubs for now) for JVM and Scala.js,
-execute the following commands in your terminal:
+execute the following commands in your terminal.
+
+For JVM test:
 
 ```console
 $ sbt 'project euclidJVM' run
-$ sbt 'project euclidJS' run
 ```
+
+For JS test:
+
+```console
+$ sbt 'project euclidJS' fastOptJS::webpack
+```
+
+After that open `js/target/scala-2.12/classes/index.html` in your browser.
 
 [build-appveyor]: https://ci.appveyor.com/project/ForNeVeR/euclid/branch/master
 [build-travis]: https://travis-ci.org/codingteam/euclid

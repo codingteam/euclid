@@ -1,4 +1,4 @@
-package ru.org.codingteam.euclid
+package ru.org.codingteam.euclid.jvm
 
 object EuclidJvmApp {
   def main(args: Array[String]): Unit = {

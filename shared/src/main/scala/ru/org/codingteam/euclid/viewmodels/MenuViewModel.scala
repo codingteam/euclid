@@ -3,7 +3,7 @@ package ru.org.codingteam.euclid.viewmodels
 import ru.org.codingteam.euclid.util.Logging
 
 abstract class MenuViewModel extends Logging {
-
+  val header: String
   val items: Seq[(String, () => Unit)]
   var selectedItem: Int = 0
 
@@ -24,5 +24,4 @@ abstract class MenuViewModel extends Logging {
 
     log.debug(s"selectedItem became $selectedItem")
   }
-
 }

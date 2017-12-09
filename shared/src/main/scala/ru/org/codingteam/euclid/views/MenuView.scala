@@ -8,8 +8,9 @@ import ru.org.codingteam.euclid.viewmodels.MenuViewModel
 abstract class MenuView[KeyCode](val viewModel: MenuViewModel) extends SimpleKeyMapView[KeyCode] with Logging {
 
   override def render(display: Display): Unit = {
-    display.drawTextCentered("Keter", Some(1))
-    display.drawTextCentered("=====", Some(2))
+    val header = viewModel.header
+    display.drawTextCentered(header, Some(1))
+    display.drawTextCentered("=" * header.length, Some(2))
 
     val base = 4
     viewModel.items.zipWithIndex.foreach { case ((name, action), index) =>

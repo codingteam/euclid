@@ -24,4 +24,9 @@ trait Display {
   }
 
   def drawTextCentered(text: String, y: Option[Int] = None): Unit = drawTextCentered(0, 0, width, height, text, y)
+
+  /**
+    * Clears the display.
+    */
+  def clear()
 }

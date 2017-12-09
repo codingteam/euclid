@@ -1,4 +1,4 @@
-package ru.org.codingteam.euclid
+package ru.org.codingteam.euclid.js
 
 import collection.mutable.Stack
 import org.scalatest._
