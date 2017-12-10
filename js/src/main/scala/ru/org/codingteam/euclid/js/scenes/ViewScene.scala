@@ -1,6 +1,6 @@
 package ru.org.codingteam.euclid.js.scenes
 
-import ru.org.codingteam.euclid.IView
+import ru.org.codingteam.euclid.View
 import ru.org.codingteam.euclid.io.{Display, KeyboardEvent}
 import ru.org.codingteam.euclid.js.application.EuclidJsApp
 import ru.org.codingteam.euclid.shape.Rectangle
@@ -11,7 +11,7 @@ import ru.org.codingteam.rotjs.ROT
 
 abstract class ViewScene(display: Display) extends Scene(display) with Logging {
 
-  def components: Vector[IView[Int]]
+  def components: Vector[View[Int]]
 
   protected def renderOnKeyDown: Boolean = EuclidJsApp.currentScene.contains(this)
 

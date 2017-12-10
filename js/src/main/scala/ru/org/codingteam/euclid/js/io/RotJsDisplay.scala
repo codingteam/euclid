@@ -3,7 +3,7 @@ package ru.org.codingteam.euclid.js.io
 import ru.org.codingteam.euclid.io.{Display, TextBlockSize, TextMeasurementService}
 import ru.org.codingteam.rotjs.ROT
 
-class DisplayWrapper(display: ROT.Display) extends Display {
+class RotJsDisplay(display: ROT.Display) extends Display {
   override val textMeasurement: TextMeasurementService =
     (text: String, width: Int) => {
       val block = ROT.Text.measure(text, width)

@@ -2,7 +2,7 @@ package ru.org.codingteam.euclid
 
 import ru.org.codingteam.euclid.io.KeyboardEvent
 
-trait KeyMapView[KeyCode, Event] extends IView[KeyCode] {
+trait KeyMapView[KeyCode, Event] extends View[KeyCode] {
 
   def keyMap: Map[Event, () => Unit]
   def mapEvent(event: KeyboardEvent[KeyCode]): Event
