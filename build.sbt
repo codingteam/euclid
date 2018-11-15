@@ -14,7 +14,9 @@ lazy val euclid = crossProject.in(file("."))
     version := "0.0.1-SNAPSHOT",
     libraryDependencies += "org.scalatest" %%% "scalatest" % "3.0.4" % "test"
   )
-  .jvmSettings()
+  .jvmSettings(
+    libraryDependencies += "com.googlecode.lanterna" % "lanterna" % "3.0.1"
+  )
   .jsSettings(
     libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "0.9.3",
     npmDependencies in Compile += "rot-js" -> "0.6.2",
