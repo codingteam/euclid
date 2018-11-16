@@ -8,6 +8,6 @@ object EuclidJvmApp {
   val display: Display = new LanternaDisplay(new DefaultTerminalFactory().createTerminalEmulator())
 
   def main(args: Array[String]): Unit = {
-    display.drawText(0, 0, "Hello JVM World")
+    display.drawText(0, 0, "Hello JVM World", 10)
   }
 }
