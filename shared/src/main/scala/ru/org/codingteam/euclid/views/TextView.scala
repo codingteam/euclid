@@ -7,7 +7,7 @@ import ru.org.codingteam.euclid.viewmodels.TextViewModel
 
 class TextView[TKeyCode](shape: Rectangle, model: TextViewModel) extends View[TKeyCode] {
 
-  override def render(display: Display): Unit = {
+  override def render(display: Display[_]): Unit = {
     display.drawTextCentered(shape.x, shape.y, shape.width, shape.height, model.text, None)
   }
 

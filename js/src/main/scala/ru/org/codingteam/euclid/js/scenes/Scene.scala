@@ -4,7 +4,7 @@ import org.scalajs.dom
 import org.scalajs.dom.document
 import ru.org.codingteam.euclid.io.{Display, KeyboardEvent}
 
-abstract class Scene(val display: Display) {
+abstract class Scene(val display: Display[_]) {
 
   def keyDownListener(event: dom.KeyboardEvent): Unit = {
     onKeyDown(new KeyboardEvent[Int](event.keyCode))

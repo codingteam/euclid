@@ -1,12 +1,14 @@
 package ru.org.codingteam.euclid.io
 
-trait Display {
+trait Display[ColorImpl] {
 
   val textMeasurement: TextMeasurementService
 
-  def draw(x: Int, y: Int, ch: String, fg: String = null, bg: String = null): Unit
+  val colorFactory: ColorFactory[ColorImpl]
 
-  def draw(x: Int, y: Int, ch: Array[String], fg: String, bg: String): Unit
+  def draw(x: Int, y: Int, ch: String, fg: Color[ColorImpl] = null, bg: Color[ColorImpl] = null): Unit
+
+  def draw(x: Int, y: Int, ch: Array[String], fg: Color[ColorImpl], bg: Color[ColorImpl]): Unit
 
   def drawText(x: Int, y: Int, text: String, maxWidth: Int = 0): Int
 

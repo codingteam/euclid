@@ -7,7 +7,7 @@ import ru.org.codingteam.euclid.viewmodels.MenuViewModel
 
 abstract class MenuView[KeyCode](val viewModel: MenuViewModel) extends SimpleKeyMapView[KeyCode] with Logging {
 
-  override def render(display: Display): Unit = {
+  override def render(display: Display[_]): Unit = {
     val header = viewModel.header
     display.drawTextCentered(header, Some(1))
     display.drawTextCentered("=" * header.length, Some(2))

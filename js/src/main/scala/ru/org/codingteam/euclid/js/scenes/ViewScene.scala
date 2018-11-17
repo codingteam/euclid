@@ -9,7 +9,7 @@ import ru.org.codingteam.euclid.viewmodels.{MenuViewModel, StaticTextViewModel, 
 import ru.org.codingteam.euclid.views.{MenuView, TextView}
 import ru.org.codingteam.rotjs.ROT
 
-abstract class ViewScene(display: Display) extends Scene(display) with Logging {
+abstract class ViewScene(display: Display[_]) extends Scene(display) with Logging {
 
   def components: Vector[View[Int]]
 

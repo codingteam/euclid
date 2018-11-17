@@ -17,7 +17,7 @@ class ListView[KeyCode, T](shape: Rectangle,
    */
   protected type Item = (T, String)
 
-  override def render(display: Display): Unit = {
+  override def render(display: Display[_]): Unit = {
     val margin = 1
     model.items.vector.zipWithIndex foreach { case (item, index) =>
       val y = shape.y + index
@@ -29,10 +29,10 @@ class ListView[KeyCode, T](shape: Rectangle,
     }
   }
 
-  protected def renderItem(display: Display, item: Item, x: Int, y: Int, width: Int): Unit = {
+  protected def renderItem(display: Display[_], item: Item, x: Int, y: Int, width: Int): Unit = {
     val (value, name) = item
     if (model.selectedItem.contains(value)) {
-      display.draw(shape.x, y, ">")
+      display.draw(shape.x, y, ">", null, null)
     }
 
     display.drawText(x, y, name, width)

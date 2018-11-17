@@ -1,10 +1,10 @@
 package ru.org.codingteam.euclid.jvm.io
 
-import com.googlecode.lanterna.TerminalTextUtils
 import com.googlecode.lanterna.terminal.Terminal
-import ru.org.codingteam.euclid.io.{Display, TextBlockSize, TextMeasurementService}
+import com.googlecode.lanterna.{TerminalTextUtils, TextColor}
+import ru.org.codingteam.euclid.io._
 
-class LanternaDisplay(terminal: Terminal) extends Display {
+class LanternaDisplay(terminal: Terminal) extends Display[TextColor] {
   private val hardBreaks = Set('\n', '\f')
   private val softBreaks = Set(' ', '\t')
 
@@ -19,19 +19,21 @@ class LanternaDisplay(terminal: Terminal) extends Display {
     new TextBlockSize(w, h)
   }
 
-  override def draw(x: Int, y: Int, ch: String, fg: String, bg: String): Unit = {
+  override def draw(x: Int, y: Int, ch: String, fg: Color[TextColor], bg: Color[TextColor]): Unit = {
     //TODO implement ANSI colors
     Option(ch)
       .filter(!_.isEmpty)
       .map(_ (0))
       .foreach({
+        Option(fg).map(_.impl).foreach(terminal.setForegroundColor)
+        Option(bg).map(_.impl).foreach(terminal.setBackgroundColor)
         terminal.setCursorPosition(x, y)
         terminal.putCharacter
       })
     terminal.flush()
   }
 
-  override def draw(x: Int, y: Int, ch: Array[String], fg: String, bg: String): Unit = draw(x, y, Option(ch).orNull, fg, bg)
+  override def draw(x: Int, y: Int, ch: Array[String], fg: Color[TextColor], bg: Color[TextColor]): Unit = draw(x, y, Option(ch).orNull, fg, bg)
 
   override def drawText(x: Int, y: Int, text: String, maxWidth: Int): Int = {
     val tg = terminal.newTextGraphics()
@@ -77,4 +79,6 @@ class LanternaDisplay(terminal: Terminal) extends Display {
     * Clears the display.
     */
   override def clear(): Unit = terminal.clearScreen()
+
+  override val colorFactory: ColorFactory[TextColor] = LanternaColorFactory
 }
