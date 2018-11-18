@@ -5,7 +5,7 @@ import ru.org.codingteam.euclid.io.AnsiColor
 import ru.org.codingteam.euclid.jvm.io.LanternaDisplay
 
 object EuclidJvmApp {
-  val display = new LanternaDisplay(new DefaultTerminalFactory().setForceTextTerminal(true).createTerminal())
+  val display = new LanternaDisplay(new DefaultTerminalFactory().createTerminal())
 
   def main(args: Array[String]): Unit = {
     display.clear()
@@ -14,7 +14,7 @@ object EuclidJvmApp {
     Thread.sleep(200)
     for (color <- AnsiColor.values) {
       display.clear()
-      display.draw(0, 2, "@", colorFactory.ansi(color))
+      display.draw(0, 2, "@", Some(colorFactory.ansi(color)))
       display.drawText(0, 0, "Hello JVM World", 10)
       Thread.sleep(200)
     }

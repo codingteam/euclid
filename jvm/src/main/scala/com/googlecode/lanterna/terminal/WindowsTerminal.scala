@@ -11,11 +11,13 @@ import com.sun.jna.ptr.IntByReference
 
 class WindowsTerminal(terminalInput: InputStream, terminalOutput: OutputStream, terminalCharset: Charset, ctrlCBehaviour: CtrlCBehaviour)
   extends ANSITerminal(terminalInput, terminalOutput, terminalCharset) {
-  private val wincon = Kernel32.INSTANCE
-  setTerminalMode(Wincon.STD_INPUT_HANDLE, 0x0200) //ENABLE_VIRTUAL_TERMINAL_INPUT
+  val ENABLE_VIRTUAL_TERMINAL_INPUT: Int = 0x0200
+  val ENABLE_VIRTUAL_TERMINAL_PROCESSING: Int = 0x0001
+  val DISABLE_NEWLINE_AUTO_RETURN: Int = 0x0004
 
-  //ENABLE_VIRTUAL_TERMINAL_PROCESSING | DISABLE_NEWLINE_AUTO_RETURN | ENABLE_PROCESSED_OUTPUT
-  setTerminalMode(Wincon.STD_OUTPUT_HANDLE, 0x0001 | 0x0004 | 0x0008)
+  private val wincon = Kernel32.INSTANCE
+  setTerminalMode(Wincon.STD_INPUT_HANDLE, ENABLE_VIRTUAL_TERMINAL_INPUT)
+  setTerminalMode(Wincon.STD_OUTPUT_HANDLE, ENABLE_VIRTUAL_TERMINAL_PROCESSING | DISABLE_NEWLINE_AUTO_RETURN | Wincon.ENABLE_PROCESSED_OUTPUT)
 
   def this() = this(System.in, System.out, Charset.defaultCharset(), CtrlCBehaviour.CTRL_C_KILLS_APPLICATION)
 
@@ -27,8 +29,7 @@ class WindowsTerminal(terminalInput: InputStream, terminalOutput: OutputStream, 
     val mode = new IntByReference(0)
     wincon.GetConsoleMode(stdHandle, mode)
     mode.setValue(mode.getValue | flags)
-    val success = wincon.SetConsoleMode(stdHandle, mode.getValue)
-    if (!success) {
+    if (!wincon.SetConsoleMode(stdHandle, mode.getValue)) {
       val errCode = wincon.GetLastError().toHexString
       throw new RuntimeException(s"WinAPI call error: 0x$errCode")
     }

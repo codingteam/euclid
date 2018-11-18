@@ -6,9 +6,9 @@ trait Display[ColorImpl] {
 
   val colorFactory: ColorFactory[ColorImpl]
 
-  def draw(x: Int, y: Int, ch: String, fg: Color[ColorImpl] = null, bg: Color[ColorImpl] = null): Unit
+  def draw(x: Int, y: Int, ch: String, fg: Option[Color[ColorImpl]] = None, bg: Option[Color[ColorImpl]] = None): Unit
 
-  def draw(x: Int, y: Int, ch: Array[String], fg: Color[ColorImpl], bg: Color[ColorImpl]): Unit
+  def draw(x: Int, y: Int, ch: Array[String], fg: Option[Color[ColorImpl]], bg: Option[Color[ColorImpl]]): Unit
 
   def drawText(x: Int, y: Int, text: String, maxWidth: Int = 0): Int
 

@@ -19,21 +19,25 @@ class LanternaDisplay(terminal: Terminal) extends Display[TextColor] {
     new TextBlockSize(w, h)
   }
 
-  override def draw(x: Int, y: Int, ch: String, fg: Color[TextColor], bg: Color[TextColor]): Unit = {
-    //TODO implement ANSI colors
+  override def draw(x: Int, y: Int, ch: String, fg: Option[Color[TextColor]], bg: Option[Color[TextColor]]): Unit = {
     Option(ch)
       .filter(!_.isEmpty)
       .map(_ (0))
       .foreach({
-        Option(fg).map(_.impl).foreach(terminal.setForegroundColor)
-        Option(bg).map(_.impl).foreach(terminal.setBackgroundColor)
+        fg.map(_.impl).foreach(terminal.setForegroundColor)
+        bg.map(_.impl).foreach(terminal.setBackgroundColor)
         terminal.setCursorPosition(x, y)
         terminal.putCharacter
       })
     terminal.flush()
   }
 
-  override def draw(x: Int, y: Int, ch: Array[String], fg: Color[TextColor], bg: Color[TextColor]): Unit = draw(x, y, Option(ch).orNull, fg, bg)
+  override def draw(x: Int, y: Int, ch: Array[String], fg: Option[Color[TextColor]], bg: Option[Color[TextColor]]): Unit = {
+    val first = Option(ch)
+      .filter(_.length > 0)
+      .map(_ (0)).orNull
+    draw(x, y, first, fg, bg)
+  }
 
   override def drawText(x: Int, y: Int, text: String, maxWidth: Int): Int = {
     val tg = terminal.newTextGraphics()

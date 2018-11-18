@@ -1,6 +1,5 @@
 package ru.org.codingteam.euclid.js.io
 
-import ru.org.codingteam.euclid.io.ColorFactory
 import ru.org.codingteam.euclid.io._
 import ru.org.codingteam.rotjs.ROT
 
@@ -13,15 +12,15 @@ class RotJsDisplay(display: ROT.Display) extends Display[String] {
 
   override val colorFactory: ColorFactory[String] = RotJsColorFactory
 
-  override def draw(x: Int, y: Int, ch: String, fg: Color[String], bg: Color[String]): Unit = {
-    val fgImpl = Option(fg).map(_.impl).orNull
-    val bgImpl = Option(bg).map(_.impl).orNull
+  override def draw(x: Int, y: Int, ch: String, fg: Option[Color[String]], bg: Option[Color[String]]): Unit = {
+    val fgImpl = fg.map(_.impl).orNull
+    val bgImpl = bg.map(_.impl).orNull
     display.draw(x, y, ch, fgImpl, bgImpl)
   }
 
-  override def draw(x: Int, y: Int, ch: Array[String], fg: Color[String], bg: Color[String]): Unit = {
-    val fgImpl = Option(fg).map(_.impl).orNull
-    val bgImpl = Option(bg).map(_.impl).orNull
+  override def draw(x: Int, y: Int, ch: Array[String], fg: Option[Color[String]], bg: Option[Color[String]]): Unit = {
+    val fgImpl = fg.map(_.impl).orNull
+    val bgImpl = fg.map(_.impl).orNull
     display.draw(x, y, ch, fgImpl, bgImpl)
   }
 

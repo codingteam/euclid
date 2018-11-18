@@ -32,7 +32,7 @@ class ListView[KeyCode, T](shape: Rectangle,
   protected def renderItem(display: Display[_], item: Item, x: Int, y: Int, width: Int): Unit = {
     val (value, name) = item
     if (model.selectedItem.contains(value)) {
-      display.draw(shape.x, y, ">", null, null)
+      display.draw(shape.x, y, ">", None, None)
     }
 
     display.drawText(x, y, name, width)
